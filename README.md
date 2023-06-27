@@ -1,28 +1,3 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="pastipack.deo.ProductDao"%>
-<%@page import="pastipack.model.Product"%>
-<%@page import="pastipack.model.User"%>
-<%@page import="pastipack.model.*" %>
-<%@page import="pastipack.connection.DbCon"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    
-    <%
-   User auth = (User) request.getSession().getAttribute("auth");
-    if(auth!= null) {
-    	request.setAttribute("person", auth);
-    }
-    ProductDao pd = new ProductDao(DbCon.getConnection());
-    List<Product> products = pd.getAllProducts();
-    
-   ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
-    if (cart_list != null) {
-   	request.setAttribute("cart_list", cart_list);
-   }
-    %>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
